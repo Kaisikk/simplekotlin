@@ -15,8 +15,7 @@ fun main(args: Array<String>) {
 
 
     @Bean
-    fun preload(repo: LanguageRepo) = CommandLineRunner{
-        args ->
+    fun preload(repo: LanguageRepo) = CommandLineRunner { args ->
         repo.save(Language("scala", "odersky"))
         repo.save(Language("java", "gosling"))
         repo.save(Language("elixir", "valim"))

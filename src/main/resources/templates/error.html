@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>ERROR</title>
+</head>
+<body>
+
+<P th:text="${status}"></P>
+<P th:text="${error}"></P>
+<P th:text="${message}"></P>
+<P th:if=${exception != null} th:text="${exception}"></P>
+<P th:if=${trace != null} th:text="${trace}"></P>
+
+</body>
+</html>
