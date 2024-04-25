@@ -1,7 +1,9 @@
 package com.kaisikk.java.simplekotlin.controller
 
 import com.kaisikk.java.simplekotlin.domain.Language
+import com.kaisikk.java.simplekotlin.events.ImportEvent
 import com.kaisikk.java.simplekotlin.repo.LanguageRepo
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -10,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api")
-class LanguageControllerRest(val repo: LanguageRepo) {
+class LanguageControllerRest(val repo: LanguageRepo,
+    val aep: ApplicationEventPublisher) {
 
 
     @GetMapping
@@ -24,6 +27,17 @@ class LanguageControllerRest(val repo: LanguageRepo) {
         else repo.findByNameAndAuthor(name, author)
 
         return res;
+    }
+
+    @GetMapping("/{name}")
+    fun findByName(@PathVariable name: String): List<Language>{
+        doExpensiveWork(name)
+        println("DONE");
+        return repo.findByName(name);
+    }
+
+    private fun doExpensiveWork(message: String){
+        aep.publishEvent(ImportEvent(this, message));
     }
 
 }
