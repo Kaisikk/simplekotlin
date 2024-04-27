@@ -19,16 +19,19 @@ class LanguageControllerRest(val repo: LanguageRepo,
     @GetMapping
     fun index() = repo.findAll()
 
-    @GetMapping("/{name}")
-    fun findByNameAndAuthor(@RequestParam(required = false, name = "author") author: String,
-                            @PathVariable name:String): List<Language>{
+//    @GetMapping("/{name}")
+//    fun findByNameAndAuthor(@RequestParam(required = false, name = "author") author: String,
+//                            @PathVariable name:String): List<Language>{
+//
+//        val res = if(author == null)repo.findByName(name)
+//        else repo.findByNameAndAuthor(name, author)
+//
+//        return res;
+//    }
 
-        val res = if(author == null)repo.findByName(name)
-        else repo.findByNameAndAuthor(name, author)
-
-        return res;
-    }
-
+    /**
+     * Получение данных и отправка ивента
+     */
     @GetMapping("/{name}")
     fun findByName(@PathVariable name: String): List<Language>{
         doExpensiveWork(name)
@@ -36,6 +39,9 @@ class LanguageControllerRest(val repo: LanguageRepo,
         return repo.findByName(name);
     }
 
+    /**
+     * Создание ивента на обработку
+     */
     private fun doExpensiveWork(message: String){
         aep.publishEvent(ImportEvent(this, message));
     }

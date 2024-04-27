@@ -1,10 +1,12 @@
 package com.kaisikk.java.simplekotlin.events;
 
 import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ListenerOne
+@Component
+public class ListenerTwo
 //        implements ApplicationListener<ImportEvent>
 {
 //    @Override
@@ -16,6 +18,6 @@ public class ListenerOne
 //        } catch (InterruptedException e) {
 //            throw new RuntimeException(e);
 //        }
-//        System.out.println("ListOne - DONE");
+//        System.out.println("ListTwo - DONE");
 //    }
 }
