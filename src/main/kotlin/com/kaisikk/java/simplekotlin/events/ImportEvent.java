@@ -11,6 +11,12 @@ public class ImportEvent extends ApplicationEvent {
     @Getter
     private final String message;
 
+    /**
+     * Метод для создания ивента и передачи сообщений в приложении
+     *
+     * @param source
+     * @param message
+     */
     public ImportEvent(Object source, String message) {
         super(source);
         this.message = message;

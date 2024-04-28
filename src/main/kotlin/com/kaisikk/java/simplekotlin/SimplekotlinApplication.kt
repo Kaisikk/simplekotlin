@@ -16,6 +16,9 @@ fun main(args: Array<String>) {
     runApplication<SimplekotlinApplication>(*args)
 
 
+    /**
+     * Предзагрузка данных в базу при деплое приложения
+     */
     @Bean
     fun preload(repo: LanguageRepo) = CommandLineRunner {
         repo.save(Language("scala", "odersky"))

@@ -12,6 +12,11 @@ import java.util.concurrent.ThreadLocalRandom;
 @Component
 public class ModernAndAsyncListener {
 
+    /**
+     * Листенер ивентов, который поставляет передаваемый класс
+     *
+     * @param event
+     */
     @Async
     @EventListener
     public void handleImportEvent(ImportEvent event){

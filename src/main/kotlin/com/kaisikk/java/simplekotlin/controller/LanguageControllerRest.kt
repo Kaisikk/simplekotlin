@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api")
 class LanguageControllerRest(val repo: LanguageRepo,
+    // объект для публикации ивента в приложении
     val aep: ApplicationEventPublisher) {
 
 
@@ -40,7 +41,7 @@ class LanguageControllerRest(val repo: LanguageRepo,
     }
 
     /**
-     * Создание ивента на обработку
+     * Создание ивента и передача в него сообщения
      */
     private fun doExpensiveWork(message: String){
         aep.publishEvent(ImportEvent(this, message));
